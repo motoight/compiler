@@ -1,0 +1,14 @@
+int main()
+{
+   int a = 21;
+   int b = 10;
+   int c ;
+
+   c = a + b;
+   printf("Line 1 - c 's value is %d\n", c );
+   c = a - b;
+   dshfkl;
+   jdkf12334;
+   char c = 'c';
+   char c = 'dfsd';
+}
