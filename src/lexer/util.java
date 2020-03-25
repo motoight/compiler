@@ -1,5 +1,7 @@
 package lexer;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -101,6 +103,32 @@ public class util {
             {-1,-1,-1,2},
             {-1,-1,-1,-1}
     };
+
+    public static int MAX_LENGTH = 1024;
+
+    public static String readfile(String path){
+        try {
+            File file = new File(path);
+            FileInputStream inputStream = new FileInputStream(file);
+            byte[] bytes = new byte[MAX_LENGTH];
+            String rawinput = "";
+
+            while(true){
+                int flag = inputStream.read(bytes);
+                rawinput = rawinput + new String(bytes,"iso8859-1");
+                if (flag < MAX_LENGTH){ break; }
+            }
+
+            return  new String(rawinput.getBytes("iso8859-1"),"utf-8");
+//            this.input = rawinput.split("\n");
+//            for (int i=0;i<input.length;i++){
+//                System.out.println(input[i]);
+//            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "";
+        }
+    }
 
 
 

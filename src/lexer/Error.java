@@ -17,6 +17,18 @@ public class Error {
         this.line_num = line_num;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public int getLine_num() {
+        return line_num;
+    }
+
     @Override
     public String toString() {
         return "Error{" +

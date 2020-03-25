@@ -26,30 +26,6 @@ public class Scanner {
     }
 
 
-    public String readfile(String path){
-        try {
-            File file = new File(path);
-            FileInputStream inputStream = new FileInputStream(file);
-            byte[] bytes = new byte[MAX_LENGTH];
-            String rawinput = "";
-
-            while(true){
-                int flag = inputStream.read(bytes);
-                rawinput = rawinput + new String(bytes,"GBK");
-                if (flag < MAX_LENGTH){ break; }
-            }
-
-            return  rawinput;
-//            this.input = rawinput.split("\n");
-//            for (int i=0;i<input.length;i++){
-//                System.out.println(input[i]);
-//            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return "";
-        }
-    }
-
     public char getNextchar(String input){
         if (char_pt>input.length()){
             char_pt++;
@@ -60,9 +36,20 @@ public class Scanner {
         }
     }
 
-    public void lex(String path){
+    public List<Token> getTokens(){
+        return this.tokens;
+    }
+
+    public List<Error> getErrors_info(){
+        return this.errors_info;
+    }
+
+    public void lex(String text){
         try{
-            String text = this.readfile(path);
+//            String text = this.readfile(path);
+            //如果从tet文件中读取的text需要加上，否则出现乱码
+//            text = new String(text.getBytes("iso8859-1"),"utf-8");
+//            text = new String(text.getBytes("utf-8"),"utf-8");
             char ch ;
             // 当获取下一个字符返回值不为零，说明待分析串还未结束
             while((ch = getNextchar(text))!=0){
@@ -270,7 +257,8 @@ public class Scanner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner();
 //        scanner.readfile("test/code1");
-        scanner.lex("test/input_code.txt");
+        String text = util.readfile("test/input_code.txt");
+        scanner.lex(text);
 
         for(Token t:scanner.tokens){
             System.out.println(t.toString());

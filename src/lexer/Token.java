@@ -19,6 +19,22 @@ public class Token {
 //                + ">";
 //    }
 
+
+    public String getType() {
+        return type;
+    }
+
+
+    public String getValue() {
+        return value;
+    }
+
+
+    public int getLine_num() {
+        return line_num;
+    }
+
+
     @Override
     public String toString() {
         return "Token{" +
